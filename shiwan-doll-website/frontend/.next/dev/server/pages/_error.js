@@ -1,0 +1,8 @@
+var R=require("../chunks/ssr/[turbopack]_runtime.js")("server/pages/_error.js")
+R.c("server/chunks/ssr/64e19_e45e8343._.js")
+R.c("server/chunks/ssr/[externals]_next_dist_shared_lib_no-fallback-error_external_59b92b38.js")
+R.c("server/chunks/ssr/_4b93ffcc._.js")
+R.c("server/chunks/ssr/[externals]__fa248b9f._.js")
+R.c("server/chunks/ssr/64e19_next_afabc5d7._.js")
+R.m("[project]/Desktop/MyProject/global_saling-opencode-agile-skill/shiwan-doll-website/frontend/node_modules/next/dist/esm/build/templates/pages.js { INNER_PAGE => \"[project]/Desktop/MyProject/global_saling-opencode-agile-skill/shiwan-doll-website/frontend/node_modules/next/error.js [ssr] (ecmascript)\", INNER_DOCUMENT => \"[project]/Desktop/MyProject/global_saling-opencode-agile-skill/shiwan-doll-website/frontend/node_modules/next/document.js [ssr] (ecmascript)\", INNER_APP => \"[project]/Desktop/MyProject/global_saling-opencode-agile-skill/shiwan-doll-website/frontend/node_modules/next/app.js [ssr] (ecmascript)\" } [ssr] (ecmascript)")
+module.exports=R.m("[project]/Desktop/MyProject/global_saling-opencode-agile-skill/shiwan-doll-website/frontend/node_modules/next/dist/esm/build/templates/pages.js { INNER_PAGE => \"[project]/Desktop/MyProject/global_saling-opencode-agile-skill/shiwan-doll-website/frontend/node_modules/next/error.js [ssr] (ecmascript)\", INNER_DOCUMENT => \"[project]/Desktop/MyProject/global_saling-opencode-agile-skill/shiwan-doll-website/frontend/node_modules/next/document.js [ssr] (ecmascript)\", INNER_APP => \"[project]/Desktop/MyProject/global_saling-opencode-agile-skill/shiwan-doll-website/frontend/node_modules/next/app.js [ssr] (ecmascript)\" } [ssr] (ecmascript)").exports

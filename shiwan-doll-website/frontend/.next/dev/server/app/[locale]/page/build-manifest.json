@@ -1,0 +1,22 @@
+{
+  "devFiles": [],
+  "ampDevFiles": [],
+  "polyfillFiles": [
+    "static/chunks/64e19_next_dist_build_polyfills_polyfill-nomodule.js"
+  ],
+  "lowPriorityFiles": [],
+  "rootMainFiles": [
+    "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_3fb84a79._.js",
+    "static/chunks/64e19_next_dist_compiled_react-dom_0854f12d._.js",
+    "static/chunks/64e19_next_dist_compiled_react-server-dom-turbopack_4c28cba4._.js",
+    "static/chunks/64e19_next_dist_compiled_next-devtools_index_41ac924e.js",
+    "static/chunks/64e19_next_dist_compiled_57d422da._.js",
+    "static/chunks/64e19_next_dist_client_4367f3ea._.js",
+    "static/chunks/64e19_next_dist_5a36f5bd._.js",
+    "static/chunks/64e19_@swc_helpers_cjs_15a20b61._.js",
+    "static/chunks/8a220_global_saling-opencode-agile-skill_shiwan-doll-website_frontend_a0ff3932._.js",
+    "static/chunks/3f0e8_global_saling-opencode-agile-skill_shiwan-doll-website_frontend_4738065e._.js"
+  ],
+  "pages": {},
+  "ampFirstPages": []
+}
