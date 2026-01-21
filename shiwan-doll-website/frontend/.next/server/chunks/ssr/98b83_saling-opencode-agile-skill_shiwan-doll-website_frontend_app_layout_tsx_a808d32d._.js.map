@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../../../../../../Desktop/MyProject/global_saling-opencode-agile-skill/shiwan-doll-website/frontend/app/layout.tsx"],"sourcesContent":["export default function RootLayout({\n  children,\n}: Readonly<{\n  children: React.ReactNode;\n}>) {\n  return children;\n}\n"],"names":[],"mappings":"uCAAe,SAAS,EAAW,UACjC,CAAQ,CAGR,EACA,OAAO,CACT"}

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/Desktop/MyProject/global_saling-opencode-agile-skill/shiwan-doll-website/frontend/i18n/config.ts"],"sourcesContent":["export const locales = ['zh-CN', 'zh-TW', 'en'] as const;\nexport const defaultLocale = 'zh-CN' as const;\n\nexport type Locale = (typeof locales)[number];\n"],"names":[],"mappings":";;;;;;AAAO,MAAM,UAAU;IAAC;IAAS;IAAS;CAAK;AACxC,MAAM,gBAAgB"}},
-    {"offset": {"line": 32, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/Desktop/MyProject/global_saling-opencode-agile-skill/shiwan-doll-website/frontend/middleware.ts"],"sourcesContent":["import createMiddleware from 'next-intl/middleware';\nimport { locales, defaultLocale } from './i18n/config';\n\nexport default createMiddleware({\n  locales,\n  defaultLocale\n});\n\nexport const config = {\n  matcher: ['/((?!api|_next|_vercel|.*\\\\..*).*)']\n};\n"],"names":[],"mappings":";;;;;;AAAA;AACA;;;uCAEe,IAAA,yTAAgB,EAAC;IAC9B,SAAA,iPAAO;IACP,eAAA,uPAAa;AACf;AAEO,MAAM,SAAS;IACpB,SAAS;QAAC;KAAqC;AACjD"}}]
-}

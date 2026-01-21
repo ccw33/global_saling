@@ -1,3 +1,0 @@
-module.exports=[13711,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(6896);a.n(d("[project]/Desktop/MyProject/global_saling-opencode-agile-skill/shiwan-doll-website/frontend/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},39057,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(6896);a.n(d("[project]/Desktop/MyProject/global_saling-opencode-agile-skill/shiwan-doll-website/frontend/node_modules/next/dist/client/components/builtin/global-error.js"))},42856,a=>{"use strict";a.i(13711);var b=a.i(39057);a.n(b)}];
-
-//# sourceMappingURL=64e19_next_dist_client_components_builtin_global-error_f5ea3981.js.map
