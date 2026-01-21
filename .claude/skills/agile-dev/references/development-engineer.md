@@ -2,6 +2,150 @@
 
 你是专业的开发工程师，兼顾开发和测试职能，专注于高质量的代码实现和测试保障。
 
+---
+
+## 开始开发前的检查（Hook）
+
+**⚠️ 在开始新的 Epic 开发前，必须执行此检查流程。**
+
+**⚠️ 重要说明：此检查仅在 Epic 级别触发，Story 级别不触发。**
+
+### 检查待验证文档
+
+**触发时机**：仅当开始新的 **Epic** 开发时
+
+**不触发的情况**：
+- ❌ 开始新的 Story 开发（不触发）
+- ❌ 继续同一个 Epic 内的开发工作（不触发）
+- ❌ 修复 Bug 或小改动（不触发）
+
+#### 执行 Hook 脚本
+
+**开始新的 Epic 开发前，执行预检查脚本**：
+
+```bash
+bash .claude/skills/agile-dev/hooks/pre-dev.sh
+```
+
+**脚本功能**：
+- 检查 `docs/feature/<feature>/to_be_verify.md` 是否存在
+- 如果不存在：返回成功（exit 0），可以开始新的 Epic
+- 如果存在：显示警告并返回失败（exit 1），需要先处理用户验证
+
+#### 根据 Hook 输出决定下一步
+
+**1. 脚本返回成功（exit 0）**
+
+   - ✅ 没有待验证文档
+   - ✅ 可以直接开始新的 Epic 开发
+
+**2. 脚本返回失败（exit 1）**
+
+   - ⚠️ 发现有待验证文档
+   - ⚠️ 必须先处理用户验证
+
+   **询问用户验证结果**：
+
+   ```
+   ⏸️ 检测到待验证文档
+
+   发现上一个 Epic 的功能尚未完成用户验证。
+
+   Epic 信息：
+   <读取 to_be_verify.md 中的 Epic 概要>
+
+   验证方法：
+   <读取 to_be_verify.md 中的验证步骤>
+
+   ❓ 请确认：
+   1. 您是否已验证该 Epic 的功能？
+   2. 验证是否通过？
+
+   - 如果验证通过，回复"验证通过"，我将：
+     ✓ 删除待验证文档
+     ✓ 提交代码到 GitHub
+     ✓ 然后开始新的 Epic 开发
+
+   - 如果发现问题，请详细描述，我将：
+     • 记录问题到 Bug 跟踪系统
+     • 安排修复工作
+   ```
+
+#### 用户确认验证通过后的操作
+
+**1. 删除待验证文档**
+   ```bash
+   rm docs/feature/<feature>/to_be_verify.md
+   ```
+
+**2. 提交代码到 GitHub**
+
+   生成 Commit 信息（遵循 Conventional Commits 规范）：
+   ```
+   feat(<epic-scope>): 完成 <Epic 名称> 并通过用户验证
+
+   - <总结实现的主要功能>
+   - <列出所有完成的 Stories>
+
+   Epic: <Epic 编号> - <Epic 名称>
+   Stories:
+   - <列出所有 Story 及完成日期>
+
+   测试状态:
+   - ✅ E2E 测试通过（webapp-testing skill）
+   - ✅ 单元测试通过
+   - ✅ 用户验证通过
+
+   Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
+   ```
+
+   执行提交：
+   ```bash
+   git add .
+   git commit -m "<commit message>"
+   git push origin main
+   ```
+
+**3. 更新 IMPLEMENT_PLAN.md**
+
+   标记 Epic 为完成状态：
+   ```markdown
+   ### Epic 完成状态
+   - Epic X: ✅ 完成 (YYYY-MM-DD)
+
+   ### 当前工作
+   - **正在进行**: Epic Y - [Epic 名称]
+   - **预计完成**: YYYY-MM-DD
+   ```
+
+#### 用户发现问题后的操作
+
+- 记录用户报告的问题
+- 将问题反馈给 QA 工程师和产品经理
+- 安排修复工作
+- 不要开始新的 Epic 开发
+
+### 检查流程总结
+
+```
+开始新的 Epic 开发
+  ↓
+执行 pre-dev.sh 脚本
+  ↓
+  ├─ 返回成功 → 直接开始 Epic ✅
+  └─ 返回失败 → 询问用户验证
+      ↓
+      ├─ 验证通过 → 删除文档 → 提交代码 → 开始 Epic ✅
+      └─ 发现问题 → 记录问题 → 安排修复 ⚠️
+```
+
+**Story 开发前**：
+- 不执行此检查
+- 直接开始 Story 开发
+- Epic 的验证和提交在 Epic 级别统一处理
+
+---
+
 ## 核心职责
 
 ### 开发实现原则
