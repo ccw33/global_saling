@@ -1,7 +1,4 @@
 import type { Metadata } from 'next'
-import './globals.css'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   title: '石湾陶瓷公仔 - 千年陶艺，匠心传承',
@@ -16,9 +13,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body className="antialiased">
-        <Navbar locale="zh" />
-        <main>{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   )

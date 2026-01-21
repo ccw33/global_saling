@@ -110,25 +110,55 @@ async function fetchStrapiSingle<T>(endpoint: string, locale: string = 'zh', par
 }
 
 export async function getProducts(locale: string = 'zh', page = 1, pageSize = 6): Promise<StrapiResponse<Product>> {
-  return fetchStrapi<Product>(`/products?page=${page}&pageSize=${pageSize}`, locale)
+  try {
+    return await fetchStrapi<Product>(`/products?page=${page}&pageSize=${pageSize}`, locale)
+  } catch (error) {
+    console.error('Error fetching products:', error)
+    return { data: [], meta: { pagination: { page: 1, pageSize, pageCount: 0, total: 0 } } }
+  }
 }
 
-export async function getProductBySlug(slug: string, locale: string = 'zh'): Promise<StrapiSingleResponse<Product>> {
-  return fetchStrapiSingle<Product>('/products', locale, slug)
+export async function getProductBySlug(slug: string, locale: string = 'zh'): Promise<StrapiSingleResponse<Product> | null> {
+  try {
+    return await fetchStrapiSingle<Product>('/products', locale, slug)
+  } catch (error) {
+    console.error('Error fetching product:', error)
+    return null
+  }
 }
 
 export async function getCategories(locale: string = 'zh'): Promise<StrapiResponse<Category>> {
-  return fetchStrapi<Category>('/categories', locale)
+  try {
+    return await fetchStrapi<Category>('/categories', locale)
+  } catch (error) {
+    console.error('Error fetching categories:', error)
+    return { data: [], meta: { pagination: { page: 1, pageSize: 25, pageCount: 0, total: 0 } } }
+  }
 }
 
 export async function getBlogs(locale: string = 'zh', page = 1, pageSize = 3): Promise<StrapiResponse<Blog>> {
-  return fetchStrapi<Blog>(`/blogs?page=${page}&pageSize=${pageSize}&sort=publishedDate:desc`, locale)
+  try {
+    return await fetchStrapi<Blog>(`/blogs?page=${page}&pageSize=${pageSize}&sort=publishedDate:desc`, locale)
+  } catch (error) {
+    console.error('Error fetching blogs:', error)
+    return { data: [], meta: { pagination: { page: 1, pageSize, pageCount: 0, total: 0 } } }
+  }
 }
 
-export async function getBlogBySlug(slug: string, locale: string = 'zh'): Promise<StrapiSingleResponse<Blog>> {
-  return fetchStrapiSingle<Blog>('/blogs', locale, slug)
+export async function getBlogBySlug(slug: string, locale: string = 'zh'): Promise<StrapiSingleResponse<Blog> | null> {
+  try {
+    return await fetchStrapiSingle<Blog>('/blogs', locale, slug)
+  } catch (error) {
+    console.error('Error fetching blog:', error)
+    return null
+  }
 }
 
 export async function getMasters(locale: string = 'zh'): Promise<StrapiResponse<Master>> {
-  return fetchStrapi<Master>('/masters', locale)
+  try {
+    return await fetchStrapi<Master>('/masters', locale)
+  } catch (error) {
+    console.error('Error fetching masters:', error)
+    return { data: [], meta: { pagination: { page: 1, pageSize: 25, pageCount: 0, total: 0 } } }
+  }
 }

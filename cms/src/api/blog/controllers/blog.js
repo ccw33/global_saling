@@ -1,57 +1,35 @@
 'use strict';
 
 module.exports = {
-  async find(ctx) {
-    try {
-      const entities = await strapi.services['blog'].find(ctx.query);
-      return ctx.send(entities);
-    } catch (err) {
-      ctx.badRequest('Error finding blogs');
-    }
+  async find(params, populate) {
+    const { results, pagination } = await strapi.entityService.findMany('api::blog.blog', {
+      ...params,
+      populate,
+    });
+    return { results, pagination };
   },
 
-  async findOne(ctx) {
-    try {
-      const entity = await strapi.services['blog'].findOne(ctx.params);
-      return ctx.send(entity);
-    } catch (err) {
-      ctx.badRequest('Error finding blog');
-    }
+  async findOne(params, populate) {
+    const result = await strapi.entityService.findOne('api::blog.blog', {
+      ...params,
+      populate,
+    });
+    return result;
   },
 
-  async count(ctx) {
-    try {
-      const count = await strapi.services['blog'].count(ctx.query);
-      return ctx.send({ count });
-    } catch (err) {
-      ctx.badRequest('Error counting blogs');
-    }
+  async count(params) {
+    return await strapi.entityService.count('api::blog.blog', params);
   },
 
-  async create(ctx) {
-    try {
-      const entity = await strapi.services['blog'].create(ctx.request.body);
-      return ctx.created(entity);
-    } catch (err) {
-      ctx.badRequest('Error creating blog');
-    }
+  async create(data) {
+    return await strapi.entityService.create('api::blog.blog', data);
   },
 
-  async update(ctx) {
-    try {
-      const entity = await strapi.services['blog'].update(ctx.params, ctx.request.body);
-      return ctx.send(entity);
-    } catch (err) {
-      ctx.badRequest('Error updating blog');
-    }
+  async update(params, data) {
+    return await strapi.entityService.update('api::blog.blog', params, data);
   },
 
-  async delete(ctx) {
-    try {
-      await strapi.services['blog'].delete(ctx.params);
-      return ctx.noContent();
-    } catch (err) {
-      ctx.badRequest('Error deleting blog');
-    }
+  async delete(params) {
+    return await strapi.entityService.delete('api::blog.blog', params);
   },
 };
