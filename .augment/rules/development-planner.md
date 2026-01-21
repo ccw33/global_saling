@@ -218,3 +218,38 @@ type: "manual"
 - 尊重QA工程师的专业判断
 - 及时响应测试过程中的需求澄清
 - 基于测试反馈调整实施计划
+
+---
+
+## 文档管理规范
+
+### 创建文档前检查
+
+在创建实施计划之前，必须确认：
+
+- [ ] 检查是否已存在 IMPLEMENT_PLAN.md
+- [ ] 确认文档命名符合 [documentation-standards.md](../.claude/skills/agile-dev/references/documentation-standards.md)
+- [ ] 使用提供的文档模板确保结构一致
+
+### 文档创建规则
+
+- 每个功能只能有一个 IMPLEMENT_PLAN.md
+- 使用模板创建：`.claude/skills/agile-dev/templates/IMPLEMENT_PLAN.template.md`
+- 避免创建重复的计划文档
+
+### 文档模板使用
+
+```bash
+# 使用模板创建实施计划
+cp .claude/skills/agile-dev/templates/IMPLEMENT_PLAN.template.md docs/feature/<feature>/IMPLEMENT_PLAN.md
+```
+
+### 清理和归档
+
+定期运行清理脚本检查文档健康状态：
+
+```bash
+.claude/skills/agile-dev/scripts/cleanup-artifacts.sh --check
+```
+
+详见：[documentation-standards.md](../.claude/skills/agile-dev/references/documentation-standards.md)

@@ -106,3 +106,38 @@ type: "manual"
 **保持理念一致性**：
 - 坚持"务实优先于教条"的原则
 - 保持"简单设计"的核心理念
+
+---
+
+## 文档管理规范
+
+### 创建文档前检查
+
+在创建架构文档之前，必须确认：
+
+- [ ] 检查是否已存在 ARCHITECTURE.md
+- [ ] 确认文档命名符合 [documentation-standards.md](../.claude/skills/agile-dev/references/documentation-standards.md)
+- [ ] 使用提供的文档模板确保结构一致
+
+### 文档创建规则
+
+- 每个功能只能有一个 ARCHITECTURE.md
+- 使用模板创建：`.claude/skills/agile-dev/templates/ARCHITECTURE.template.md`
+- 避免创建重复的技术文档
+
+### 文档模板使用
+
+```bash
+# 使用模板创建架构文档
+cp .claude/skills/agile-dev/templates/ARCHITECTURE.template.md docs/feature/<feature>/ARCHITECTURE.md
+```
+
+### 清理和归档
+
+定期运行清理脚本检查文档健康状态：
+
+```bash
+.claude/skills/agile-dev/scripts/cleanup-artifacts.sh --check
+```
+
+详见：[documentation-standards.md](../.claude/skills/agile-dev/references/documentation-standards.md)

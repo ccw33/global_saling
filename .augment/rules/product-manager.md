@@ -633,3 +633,89 @@ docs/feature/<feature>/
 - 关键决策都要有说明
 - 不明确的地方都要标注出来
 - 确保所有角色都能看到完整的需求信息
+
+---
+
+## 文档管理规范
+
+### 创建文档前检查
+
+在创建任何文档之前，必须确认：
+
+- [ ] 检查是否已存在同类文档
+- [ ] 确认文档命名符合 [documentation-standards.md](../.claude/skills/agile-dev/references/documentation-standards.md)
+- [ ] 避免创建重复的状态文档
+- [ ] 使用提供的文档模板（如果适用）
+
+### 文档创建规则
+
+#### 核心文档
+
+每个功能目录下只保留一份核心文档：
+
+- `REQUIREMENTS.md` - 产品需求文档（本角色创建）
+- `ARCHITECTURE.md` - 技术架构设计（架构设计师创建）
+- `IMPLEMENT_PLAN.md` - 开发实施计划（开发规划师创建）
+- `QA_TEST_PLAN.md` - QA测试计划（QA工程师创建）
+
+**重要：**
+- ❌ **禁止** 创建 CURRENT_STATUS.md、PROJECT_STATUS.md、DEVELOPMENT_STATUS.md 等重复的状态文档
+- ✅ **统一使用** STATUS.md 作为唯一的状态文档
+
+#### 临时文档命名
+
+如果需要创建临时文档或脚本，必须包含日期后缀：
+
+- 临时脚本：`tmp-<用途>-<YYYYMMDD>.sh`
+- 诊断脚本：`diagnose-<问题>-<YYYYMMDD>.sh`
+- 测试脚本：`test-<功能>-<YYYYMMDD>.sh`
+
+**禁止的命名模式：**
+- ❌ setup-final.sh, setup-final-working.sh（使用版本号）
+- ❌ STATUS.md, CURRENT_STATUS.md, PROJECT_STATUS.md（统一使用 STATUS.md）
+
+### 文档模板使用
+
+创建需求文档时，使用提供的模板确保结构一致：
+
+```bash
+# 使用模板创建需求文档
+cp .claude/skills/agile-dev/templates/REQUIREMENTS.template.md docs/feature/<feature>/REQUIREMENTS.md
+```
+
+### 文档生命周期管理
+
+1. **创建阶段**：使用标准命名，放在正确位置
+2. **使用阶段**：定期更新，保持信息准确
+3. **完成阶段**：确认后交付给下一角色
+4. **归档阶段**：过时文档移到 .claude/archive/
+
+### 清理和归档
+
+定期运行文档清理脚本：
+
+```bash
+# 检查重复文档
+.claude/skills/agile-dev/scripts/cleanup-artifacts.sh --check
+
+# 归档重复文档和临时文件
+.claude/skills/agile-dev/scripts/cleanup-artifacts.sh --archive
+```
+
+### 文档索引
+
+维护 `docs/INDEX.md` 文档索引，列出所有核心文档及其用途。
+
+### 常见问题
+
+#### Q: 我应该创建多个状态文档来跟踪不同方面的进度吗？
+
+**答：** 不应该。只使用一个 `STATUS.md` 文档，在该文档中使用不同的章节来跟踪不同方面的进度。
+
+#### Q: 发现别人创建了不符合规范的文档怎么办？
+
+**答：** 运行清理脚本检测并建议整改，或者手动将重复文档归档到 `.claude/archive/`。
+
+#### Q: 临时文档需要保存到 git 吗？
+
+**答：** 一般不需要。临时文档应该添加到 `.gitignore`，使用后直接删除或归档。

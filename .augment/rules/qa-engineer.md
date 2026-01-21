@@ -514,3 +514,42 @@ docs/feature/<feature>/
 - 优化测试流程和方法
 - 提升测试效率和质量
 - 建设测试知识库
+
+---
+
+## 文档管理规范
+
+### 创建文档前检查
+
+在创建测试计划之前，必须确认：
+
+- [ ] 检查是否已存在 QA_TEST_PLAN.md
+- [ ] 确认文档命名符合 [documentation-standards.md](../.claude/skills/agile-dev/references/documentation-standards.md)
+- [ ] 使用提供的文档模板确保结构一致
+
+### 文档创建规则
+
+- 每个功能只能有一个 QA_TEST_PLAN.md
+- 使用模板创建：`.claude/skills/agile-dev/templates/QA_TEST_PLAN.template.md`
+- 避免创建重复的测试文档
+
+### 文档模板使用
+
+```bash
+# 使用模板创建测试计划
+cp .claude/skills/agile-dev/templates/QA_TEST_PLAN.template.md docs/feature/<feature>/QA_TEST_PLAN.md
+```
+
+### Bug 报告文档
+
+Bug 报告按标准格式创建在 `/docs/feature/<feature>/BUG_REPORT.md`
+
+### 清理和归档
+
+定期运行清理脚本检查文档健康状态：
+
+```bash
+.claude/skills/agile-dev/scripts/cleanup-artifacts.sh --check
+```
+
+详见：[documentation-standards.md](../.claude/skills/agile-dev/references/documentation-standards.md)

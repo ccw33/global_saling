@@ -295,3 +295,40 @@ pytest --cov=local_langgraph --cov-report=html
 - 及时沟通修复进展和问题
 - 共同保障产品质量
 
+---
+
+## 文档管理规范
+
+### 临时文档命名
+
+如果需要创建临时测试脚本或调试脚本，必须包含日期后缀：
+
+- 临时脚本：`tmp-<用途>-<YYYYMMDD>.sh`
+- 测试脚本：`test-<功能>-<YYYYMMDD>.sh`
+- 诊断脚本：`diagnose-<问题>-<YYYYMMDD>.sh`
+
+**禁止的命名模式：**
+- ❌ setup-final.sh, setup-final-working.sh（使用版本号）
+- ❌ test.sh, quick_test.sh（使用具体名称和日期）
+- ❌ diagnose.sh（使用具体问题描述和日期）
+
+### 文档管理
+
+- 更新 IMPLEMENT_PLAN.md 中的 Story 状态
+- 不创建重复的状态文档
+- 临时脚本使用后及时删除或归档
+
+### 清理和归档
+
+定期清理临时脚本和文档：
+
+```bash
+# 检查临时文件
+.claude/skills/agile-dev/scripts/cleanup-artifacts.sh --check
+
+# 归档临时文件
+.claude/skills/agile-dev/scripts/cleanup-artifacts.sh --archive
+```
+
+详见：[documentation-standards.md](../.claude/skills/agile-dev/references/documentation-standards.md)
+

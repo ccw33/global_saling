@@ -319,3 +319,108 @@ docs/feature/<feature>/
 - **references/workflow.md** - 完整协作工作流
 
 这些文件包含各角色的详细工作方法、文档模板、协作流程和质量标准。
+
+---
+
+## 文档管理
+
+### 文档管理规范
+
+使用 agile-dev skill 进行开发时，所有角色都必须遵循文档管理规范。
+
+详见：[references/documentation-standards.md](references/documentation-standards.md)
+
+**核心原则**：
+- **单一来源** - 每种类型的文档只保留一份权威文档
+- **命名统一** - 遵循统一的命名规范，避免随意命名
+- **及时清理** - 临时文件使用后及时清理或归档
+- **清晰分类** - 核心文档、临时文档、归档文档明确分离
+
+### 标准文档集
+
+每个 feature 目录下应该只包含以下核心文档：
+
+```
+docs/feature/<feature>/
+├── REQUIREMENTS.md      # 产品需求文档 (产品经理创建)
+├── ARCHITECTURE.md      # 技术架构设计 (架构设计师创建)
+├── IMPLEMENT_PLAN.md    # 开发实施计划 (开发规划师创建)
+└── QA_TEST_PLAN.md      # QA测试计划 (QA工程师创建)
+```
+
+**项目根目录：**
+- `STATUS.md` - 项目当前状态（唯一的状态文档）
+- `README.md` - 项目说明文档
+
+**重要：**
+- ❌ **禁止** 创建 CURRENT_STATUS.md、PROJECT_STATUS.md、DEVELOPMENT_STATUS.md 等重复的状态文档
+- ✅ **统一使用** STATUS.md 作为唯一的状态文档
+
+### 文档模板
+
+使用提供的文档模板确保文档结构一致：
+
+- `templates/REQUIREMENTS.template.md`
+- `templates/ARCHITECTURE.template.md`
+- `templates/IMPLEMENT_PLAN.template.md`
+- `templates/QA_TEST_PLAN.template.md`
+- `templates/STATUS.template.md`
+
+**使用方法**：
+```bash
+# 使用模板创建文档
+cp .claude/skills/agile-dev/templates/REQUIREMENTS.template.md docs/feature/<feature>/REQUIREMENTS.md
+```
+
+### 临时文档命名
+
+如果需要创建临时文档或脚本，必须包含日期后缀：
+
+- 临时脚本：`tmp-<用途>-<YYYYMMDD>.sh`
+- 诊断脚本：`diagnose-<问题>-<YYYYMMDD>.sh`
+- 测试脚本：`test-<功能>-<YYYYMMDD>.sh`
+
+**禁止的命名模式：**
+- ❌ setup-final.sh, setup-final-working.sh（使用版本号）
+- ❌ test.sh, quick_test.sh（使用具体名称和日期）
+- ❌ diagnose.sh（使用具体问题描述和日期）
+
+### 文档清理和归档
+
+#### 自动化清理脚本
+
+使用清理脚本自动检测和归档重复文档：
+
+```bash
+# 检查重复文档
+.claude/skills/agile-dev/scripts/cleanup-artifacts.sh --check
+
+# 归档重复文档和临时文件
+.claude/skills/agile-dev/scripts/cleanup-artifacts.sh --archive
+
+# 生成清理报告
+.claude/skills/agile-dev/scripts/cleanup-artifacts.sh --report
+```
+
+#### 会话钩子
+
+- **session-start.sh** - 会话开始时检查文档健康状态
+- **session-end.sh** - 会话结束时提示清理建议
+
+### 文档索引
+
+维护 `docs/INDEX.md` 文档索引，列出所有核心文档及其用途。
+
+### 常见问题
+
+#### Q: 我应该创建多个状态文档来跟踪不同方面的进度吗？
+
+**答：** 不应该。只使用一个 `STATUS.md` 文档，在该文档中使用不同的章节来跟踪不同方面的进度。
+
+#### Q: 临时文档需要保存到 git 吗？
+
+**答：** 一般不需要。临时文档应该添加到 `.gitignore`，使用后直接删除或归档到 `.claude/archive/`。
+
+#### Q: 发现别人创建了不符合规范的文档怎么办？
+
+**答：** 运行清理脚本检测并建议整改，或者手动将重复文档归档到 `.claude/archive/`。
