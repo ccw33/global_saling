@@ -92,13 +92,13 @@
 **以便** 管理产品信息并支持中英双语
 
 **验收标准** (用户视角):
-- [ ] Strapi 后台显示"Product"内容类型
-- [ ] 管理员可以创建产品，填写产品名称、描述、价格等信息
-- [ ] 支持上传产品图片（多图）
-- [ ] 支持选择产品分类
-- [ ] 支持关联大师信息
-- [ ] 产品内容支持中文和英文两种语言
-- [ ] 产品可以发布和预览
+- [x] Strapi 后台显示"Product"内容类型
+- [x] 管理员可以创建产品，填写产品名称、描述、价格等信息
+- [x] 支持上传产品图片（多图）
+- [x] 支持选择产品分类
+- [x] 支持关联大师信息
+- [x] 产品内容支持中文和英文两种语言
+- [x] 产品可以发布和预览
 
 **技术要点**:
 - 定义 Product Content Type（name, slug, description, story, price, stock, category, master, images, metaTitle, metaDescription）
@@ -107,12 +107,12 @@
 - 配置 SEO 字段
 
 **DoD (Definition of Done)** (开发视角):
-- [ ] Strapi API 返回 Product 数据结构正确（`/api/products`）
-- [ ] 支持 locale 参数过滤语言（`/api/products?locale=zh`）
-- [ ] 关系字段正常关联（populate=*）
-- [ ] API 响应速度 < 500ms
+- [x] Strapi API 返回 Product 数据结构正确（`/api/products`）
+- [x] 支持 locale 参数过滤语言（`/api/products?locale=zh`）
+- [x] 关系字段正常关联（populate=*）
+- [x] API 响应速度 < 500ms
 
-**状态**: 未开始
+**状态**: 待QA测试
 
 ---
 
@@ -123,10 +123,10 @@
 **以便** 对产品进行分类管理
 
 **验收标准** (用户视角):
-- [ ] Strapi 后台显示"Category"内容类型
-- [ ] 管理员可以创建分类，填写分类名称和描述
-- [ ] 分类内容支持中文和英文两种语言
-- [ ] 分类可以关联多个产品
+- [x] Strapi 后台显示"Category"内容类型
+- [x] 管理员可以创建分类，填写分类名称和描述
+- [x] 分类内容支持中文和英文两种语言
+- [x] 分类可以关联多个产品
 
 **技术要点**:
 - 定义 Category Content Type（name, slug, description）
@@ -134,11 +134,11 @@
 - 配置与 Product 的一对多关系
 
 **DoD (Definition of Done)** (开发视角):
-- [ ] Strapi API 返回 Category 数据结构正确（`/api/categories`）
-- [ ] 支持 locale 参数过滤语言
-- [ ] 关联产品数据正常返回
+- [x] Strapi API 返回 Category 数据结构正确（`/api/categories`）
+- [x] 支持 locale 参数过滤语言
+- [x] 关联产品数据正常返回
 
-**状态**: 未开始
+**状态**: 待QA测试
 
 ---
 
@@ -149,10 +149,10 @@
 **以便** 介绍石湾陶艺大师信息
 
 **验收标准** (用户视角):
-- [ ] Strapi 后台显示"Master"内容类型
-- [ ] 管理员可以创建大师资料，填写大师姓名、简介、照片
-- [ ] 大师内容支持中文和英文两种语言
-- [ ] 大师可以关联多个产品
+- [x] Strapi 后台显示"Master"内容类型
+- [x] 管理员可以创建大师资料，填写大师姓名、简介、照片
+- [x] 大师内容支持中文和英文两种语言
+- [x] 大师可以关联多个产品
 
 **技术要点**:
 - 定义 Master Content Type（name, slug, biography, photo）
@@ -160,11 +160,11 @@
 - 配置与 Product 的一对多关系
 
 **DoD (Definition of Done)** (开发视角):
-- [ ] Strapi API 返回 Master 数据结构正确（`/api/masters`）
-- [ ] 支持 locale 参数过滤语言
-- [ ] 关联产品数据正常返回
+- [x] Strapi API 返回 Master 数据结构正确（`/api/masters`）
+- [x] 支持 locale 参数过滤语言
+- [x] 关联产品数据正常返回
 
-**状态**: 未开始
+**状态**: 待QA测试
 
 ---
 
@@ -175,12 +175,12 @@
 **以便** 发布石湾陶艺相关的历史和故事文章
 
 **验收标准** (用户视角):
-- [ ] Strapi 后台显示"Blog"内容类型
-- [ ] 管理员可以创建博客文章，填写标题、内容、摘要
-- [ ] 支持上传博客封面图
-- [ ] 支持富文本编辑器（Markdown 或 WYSIWYG）
-- [ ] 博客内容支持中文和英文两种语言
-- [ ] 博客可以发布和预览
+- [x] Strapi 后台显示"Blog"内容类型
+- [x] 管理员可以创建博客文章，填写标题、内容、摘要
+- [x] 支持上传博客封面图
+- [x] 支持富文本编辑器（Markdown 或 WYSIWYG）
+- [x] 博客内容支持中文和英文两种语言
+- [x] 博客可以发布和预览
 
 **技术要点**:
 - 定义 Blog Content Type（title, slug, excerpt, content, coverImage, publishedDate, metaTitle, metaDescription）
@@ -189,12 +189,12 @@
 - 配置 SEO 字段
 
 **DoD (Definition of Done)** (开发视角):
-- [ ] Strapi API 返回 Blog 数据结构正确（`/api/blogs`）
-- [ ] 支持 locale 参数过滤语言
-- [ ] 富文本内容格式化正确
-- [ ] 按发布日期排序正常
+- [x] Strapi API 返回 Blog 数据结构正确（`/api/blogs`）
+- [x] 支持 locale 参数过滤语言
+- [x] 富文本内容格式化正确
+- [x] 按发布日期排序正常
 
-**状态**: 未开始
+**状态**: 待QA测试
 
 ---
 
