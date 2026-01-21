@@ -38,12 +38,12 @@ show_doc_structure() {
     log_info "当前项目文档结构："
 
     echo ""
-    echo "核心文档："
-    [ -f "$PROJECT_ROOT/STATUS.md" ] && echo "  ✅ STATUS.md"
+    echo "核心文档（项目根目录）："
+    
     [ -f "$PROJECT_ROOT/README.md" ] && echo "  ✅ README.md"
 
     echo ""
-    echo "功能文档："
+    echo "功能文档（docs/feature/）："
     if [ -d "$PROJECT_ROOT/docs/feature" ]; then
         find "$PROJECT_ROOT/docs/feature" -name "REQUIREMENTS.md" -o -name "ARCHITECTURE.md" -o -name "IMPLEMENT_PLAN.md" -o -name "QA_TEST_PLAN.md" 2>/dev/null | while read -r file; do
             echo "  📄 $(basename $(dirname "$file"))/$(basename "$file")"
@@ -59,9 +59,9 @@ suggest_cleanup() {
 
     echo ""
     echo "创建新文档前，请遵循以下规范："
-    echo "  1. 状态文档统一使用 STATUS.md"
-    echo "  2. 临时脚本必须包含日期后缀（如 tmp-xxx-YYYYMMDD.sh）"
-    echo "  3. 避免创建重复的状态文档"
+    echo "  1. 禁止创建任何状态文档（STATUS.md, PROGRESS.md 等）"
+    echo "  2. 所有状态信息必须更新到 IMPLEMENT_PLAN.md 的进度跟踪章节"
+    echo "  3. 临时脚本必须包含日期后缀（如 tmp-xxx-YYYYMMDD.sh）"
     echo ""
     echo "运行清理检查："
     echo "  bash .claude/skills/agile-dev/scripts/cleanup-artifacts.sh --check"

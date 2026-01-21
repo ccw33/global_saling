@@ -55,8 +55,9 @@ detect_temp_files() {
 detect_duplicates() {
     local duplicates=0
 
-    # 检测重复的状态文档
+    # 检测重复的状态文档（包括 STATUS.md 本身，因为现在禁止创建）
     local status_docs=(
+        "STATUS.md"
         "CURRENT_STATUS.md"
         "PROJECT_STATUS.md"
         "DEVELOPMENT_STATUS.md"
@@ -102,8 +103,8 @@ generate_cleanup_suggestions() {
         log_warning "发现 $duplicates 个重复的状态文档"
         echo ""
         echo "建议操作："
-        echo "  1. 合并所有状态信息到 STATUS.md"
-        echo "  2. 删除重复的状态文档"
+        echo "  1. 将所有状态信息更新到 IMPLEMENT_PLAN.md 的进度跟踪章节"
+        echo "  2. 删除所有状态文档（包括 STATUS.md）"
         echo "  3. 运行清理脚本自动归档"
     fi
 

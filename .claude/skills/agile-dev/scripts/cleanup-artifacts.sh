@@ -19,8 +19,9 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# 重复的状态文档列表
+# 重复的状态文档列表（包括 STATUS.md 本身，因为现在禁止创建）
 DUPLICATE_STATUS_DOCS=(
+    "STATUS.md"
     "CURRENT_STATUS.md"
     "PROJECT_STATUS.md"
     "DEVELOPMENT_STATUS.md"
@@ -195,7 +196,7 @@ $(printf '- %s\n' "${docs_to_archive[@]}")
 
 ## 归档原因
 
-- 重复的状态文档（应统一使用 STATUS.md）
+- 重复的状态文档（所有状态信息应记录在 IMPLEMENT_PLAN.md 的进度跟踪章节）
 - 临时脚本文件
 - 过期的设置文档
 
@@ -288,10 +289,11 @@ EOF
 
 ## 建议
 
-1. **统一状态文档**: 将所有状态信息合并到 STATUS.md
-2. **清理临时脚本**: 删除不再需要的临时脚本
-3. **使用规范命名**: 新脚本使用带日期的命名规范
-4. **定期归档**: 定期运行清理脚本保持项目整洁
+1. **禁止创建状态文档**: 删除所有状态文档（STATUS.md, PROGRESS.md 等）
+2. **使用 IMPLEMENT_PLAN.md**: 将所有状态信息更新到 IMPLEMENT_PLAN.md 的进度跟踪章节
+3. **清理临时脚本**: 删除不再需要的临时脚本
+4. **使用规范命名**: 新脚本使用带日期的命名规范
+5. **定期归档**: 定期运行清理脚本保持项目整洁
 
 ## 清理命令
 

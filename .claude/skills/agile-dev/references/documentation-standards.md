@@ -21,13 +21,14 @@ docs/feature/<feature>/
 └── QA_TEST_PLAN.md      # QA测试计划 (QA工程师创建)
 ```
 
-**项目根目录：**
-- `STATUS.md` - 项目当前状态（唯一的状态文档）
-- `README.md` - 项目说明文档
+**项目根目录（最少必要集）：**
+- `README.md` - 项目主文档
+- `QUICK_START.md` - 快速开始指南
+- `docs/SETUP.md` - 环境设置指南（可选）
 
 **重要：**
-- ❌ **禁止** 创建 CURRENT_STATUS.md、PROJECT_STATUS.md、DEVELOPMENT_STATUS.md 等重复的状态文档
-- ✅ **统一使用** STATUS.md 作为唯一的状态文档
+- ❌ **禁止** 创建任何形式的状态文档（STATUS.md, CURRENT_STATUS.md, PROJECT_STATUS.md, DEVELOPMENT_STATUS.md, PROGRESS.md 等）
+- ✅ **所有状态信息必须更新到** `docs/feature/<feature>/IMPLEMENT_PLAN.md` 的进度跟踪章节
 
 ## 文档命名规范
 
@@ -37,9 +38,12 @@ docs/feature/<feature>/
 
 - `REQUIREMENTS.md` - 产品需求文档
 - `ARCHITECTURE.md` - 技术架构设计
-- `IMPLEMENT_PLAN.md` - 开发实施计划
+- `IMPLEMENT_PLAN.md` - 开发实施计划（包含进度跟踪）
 - `QA_TEST_PLAN.md` - QA测试计划
-- `STATUS.md` - 项目状态文档
+
+**注意**：
+- `IMPLEMENT_PLAN.md` 必须在顶部包含"进度跟踪"章节，用于记录所有项目状态和进度信息
+- **禁止创建**任何形式的状态文档（STATUS.md, PROGRESS.md, CURRENT_STATUS.md 等）
 
 ### 临时文档命名
 
@@ -92,12 +96,14 @@ docs/feature/<feature>/
 以下命名模式**严格禁止**使用：
 
 ❌ **状态文档重复命名：**
+- STATUS.md
 - CURRENT_STATUS.md
 - PROJECT_STATUS.md
 - DEVELOPMENT_STATUS.md
 - DEVELOPMENT_PROGRESS.md
 - PROGRESS.md
 - CURRENT_STATE.md
+- **任何形式的状态文档都禁止创建**
 
 ❌ **脚本模糊命名：**
 - setup-final.sh
@@ -113,7 +119,8 @@ docs/feature/<feature>/
 ❌ **指南文档重复命名：**
 - FINAL_SETUP_GUIDE.md
 - NEW_MACHINE_SETUP.md
-- 如果已有 README.md，不要创建 QUICK_START.md
+- 如果已有 SETUP.md，不要创建重复的设置指南
+- 所有设置信息应该整合到 `docs/SETUP.md`
 
 ## 文档创建检查清单
 
@@ -171,11 +178,13 @@ docs/feature/<feature>/
 # 项目文档索引
 
 ## 核心文档
-- REQUIREMENTS.md - 产品需求
-- ARCHITECTURE.md - 技术架构
-- IMPLEMENT_PLAN.md - 实施计划
-- QA_TEST_PLAN.md - 测试计划
-- STATUS.md - 当前项目状态
+- README.md - 项目主文档
+- QUICK_START.md - 快速开始指南
+- docs/SETUP.md - 环境设置指南
+- docs/feature/<feature>/REQUIREMENTS.md - 产品需求
+- docs/feature/<feature>/ARCHITECTURE.md - 技术架构
+- docs/feature/<feature>/IMPLEMENT_PLAN.md - 实施计划（包含进度跟踪）
+- docs/feature/<feature>/QA_TEST_PLAN.md - 测试计划
 
 ## 功能文档
 - docs/feature/feature-a/REQUIREMENTS.md - Feature A 需求
@@ -185,7 +194,7 @@ docs/feature/<feature>/
 - [列出临时文件及其用途]
 
 ## 归档文档
-- .claude/archive/ - 已归档的历史文档
+- docs/archives/ - 已归档的历史文档
 ```
 
 ## 自动化工具
@@ -240,10 +249,18 @@ CURRENT_STATE.md
 ...
 ```
 
-✅ **正确示例**（单一来源）：
+✅ **正确示例**（方案 B：整合到 IMPLEMENT_PLAN.md）：
 ```
-STATUS.md  # 唯一的状态文档
+# 项目根目录
+README.md
+QUICK_START.md
+docs/SETUP.md
+
+# 状态信息在 IMPLEMENT_PLAN.md 中
+docs/feature/<feature>/IMPLEMENT_PLAN.md  # 包含进度跟踪章节
 ```
+
+**说明**：所有状态信息、进度跟踪都记录在 `IMPLEMENT_PLAN.md` 顶部的"进度跟踪"章节中。
 
 ### 脚本文件管理
 
@@ -303,19 +320,19 @@ test-integration-20250121.sh  # 集成测试（带日期）
 
 ### Q1: 我应该创建多个状态文档来跟踪不同方面的进度吗？
 
-**答：** 不应该。只使用一个 `STATUS.md` 文档，在该文档中使用不同的章节来跟踪不同方面的进度。
+**答：** 不应该。**禁止创建任何形式的状态文档**（STATUS.md, CURRENT_STATUS.md, PROGRESS.md 等）。所有状态信息、进度跟踪必须更新到 `docs/feature/<feature>/IMPLEMENT_PLAN.md` 顶部的"进度跟踪"章节中。
 
 ### Q2: 临时脚本需要保存到 git 吗？
 
-**答：** 一般不需要。临时脚本应该添加到 `.gitignore`，使用后直接删除或归档到 `.claude/archive/`。
+**答：** 一般不需要。临时脚本应该添加到 `.gitignore`，使用后直接删除或归档到 `docs/archives/`。
 
 ### Q3: 如何处理需要保留多个版本的脚本？
 
-**答：** 使用版本号命名（v1, v2, v3）或保留最新的为 `-latest`，旧版本归档到 `.claude/archive/`。
+**答：** 使用版本号命名（v1, v2, v3）或保留最新的为 `-latest`，旧版本归档到 `docs/archives/`。
 
 ### Q4: 发现别人创建了不符合规范的文档怎么办？
 
-**答：** 运行清理脚本检测并建议整改，或者手动将重复文档归档到 `.claude/archive/`。
+**答：** 运行清理脚本检测并建议整改，或者手动将重复文档归档到 `docs/archives/`。
 
 ### Q5: 什么样的文档应该归档而不是删除？
 
