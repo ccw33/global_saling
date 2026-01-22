@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 订单状态枚举
+enum OrderStatus {
+  PENDING    // 待支付
+  PAID       // 已支付
+  PROCESSING // 处理中
+  SHIPPED    // 已发货
+  DELIVERED  // 已送达
+  CANCELLED  // 已取消
+}
+
+// 商品模型
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String
+  price       Float
+  stock       Int
+  images      String[] // 图片URL数组
+  category    String?  // 商品分类
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  orderItems  OrderItem[]
+
+  @@index([slug])
+  @@index([category])
+}
+
+// 订单模型
+model Order {
+  id              String      @id @default(cuid())
+  orderNumber     String      @unique
+  status          OrderStatus @default(PENDING)
+  total           Float
+  currency        String      @default("SGD")
+
+  // 客户信息
+  customerEmail  String
+  customerName   String
+  phone          String?
+
+  // 配送地址
+  address         String
+  city            String
+  state           String?
+  postalCode      String
+  country         String      @default("SG")
+
+  // 支付信息
+  paymentMethod   String      // stripe, paypal, alipay, wechat
+  paymentId       String?     // 支付平台的交易ID
+
+  // 时间戳
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  orderItems      OrderItem[]
+
+  @@index([orderNumber])
+  @@index([customerEmail])
+  @@index([status])
+}
+
+// 订单商品明细模型
+model OrderItem {
+  id          String   @id @default(cuid())
+  orderId     String
+  productId   String
+  quantity    Int
+  price       Float     // 下单时的价格
+
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product     Product  @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+}

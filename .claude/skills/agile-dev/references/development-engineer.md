@@ -156,6 +156,62 @@ bash .claude/skills/agile-dev/hooks/pre-dev.sh
 - **简单设计**——每个函数/类只承担一项职责，避免过早抽象
 
 ### 开发实现流程
+
+#### 步骤0：开发前技术调研（必须执行）
+
+**⚠️ 在开始任何开发工作前，必须先了解相关技术文档。**
+
+**使用 Context7 MCP 查询技术文档**：
+
+1. **识别需要查询的技术栈**
+   - 根据项目使用的技术（Next.js, React, Supabase, Python 等）
+   - 确定需要查询的文档范围
+
+2. **使用 Context7 MCP 查询**
+   ```
+   使用 Context7 MCP 工具查询相关技术文档：
+
+   示例查询：
+   - "Next.js 14 App Router 的最佳实践"
+   - "React Server Components 使用方法"
+   - "Supabase 客户端 API 文档"
+   - "TypeScript 类型定义最佳实践"
+   ```
+
+3. **查询方式**
+   - 先使用 `mcp__context7__resolve-library-id` 解析库ID
+   - 然后使用 `mcp__context7__query-docs` 查询具体文档
+   - 或者直接使用库名格式查询（如 `/next.js/next.js`）
+
+4. **理解并记录关键信息**
+   - API 使用方法和最佳实践
+   - 常见陷阱和注意事项
+   - 与当前项目相关的示例代码
+
+**为什么必须执行技术调研**：
+- ✅ 避免使用过时或错误的API
+- ✅ 学习最佳实践和推荐模式
+- ✅ 减少调试时间和试错成本
+- ✅ 确保代码符合框架规范
+
+**示例流程**：
+
+```
+1. 确定技术栈：项目使用 Next.js 14 + Supabase
+   ↓
+2. 查询文档：
+   - resolve-library-id: "next.js"
+   - query-docs: "/next.js/next.js", "App Router data fetching"
+   - resolve-library-id: "supabase"
+   - query-docs: "/supabase/supabase-js", "TypeScript queries"
+   ↓
+3. 理解文档内容，记录关键点
+   ↓
+4. 开始实际的开发工作
+```
+
+#### 标准开发流程
+
 1. **理解**——研究代码库里的既有模式和实现方式
 2. **设计**——基于现有模式设计最简单的实现方案
 3. **编码**——编写清晰、可读的代码实现
